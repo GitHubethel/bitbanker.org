@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sign Up</title>
+<link rel="stylesheet" href="style2.css">
+</head>
+<body>
+  <div class="login-card">
+  <h2 class="form-title">Sign Up</h2>
+  <form class="signup-form">
+    <label for="email">Your email</label>
+    <input type="email" id="email" placeholder="" required>
+
+    <label for="password">Password</label>
+    <div class="password-wrapper">
+      <input type="password" id="password" required>
+      <span class="toggle-password" onclick="togglePassword('password')">👁️</span>
+    </div>
+    <div class="hint">At least 8 characters, including uppercase and lowercase Latin letters, numbers and special characters</div>
+
+    <label for="confirm-password">Confirm password</label>
+    <div class="password-wrapper">
+      <input type="password" id="confirm-password" required>
+      <span class="toggle-password" onclick="togglePassword('confirm-password')">👁️</span>
+    </div>
+
+    <label for="promo">Promo code</label>
+    <input type="number" id="promo" placeholder="Enter promo code">
+
+    <div class="checkbox-group">
+      <label><input type="checkbox" required> I agree with <a href="#">Terms</a> and <a href="#">Privacy Policy</a> and I confirm that I have reached the age of majority</label>
+      <label><input type="checkbox"> I agree to receive email newsletters</label>
+    </div>
+
+    <button type="submit">Sign up</button>
+</div>
+
+
+  <script>
+    function togglePassword(id) {
+      const input = document.getElementById(id);
+      input.type = input.type === "password" ? "text" : "password";
+    }
+  </script>
+</body>
+</html>

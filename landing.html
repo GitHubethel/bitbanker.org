@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Bitbanker Landing Page</title>
+  <link rel="stylesheet" href="landing.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <header>
+    <div class="logo">
+  <a href="/">
+  <img src="logo.svg" alt="Bitbanker" width="200" height="48">
+</a>
+</div>
+    <div class="nav-menu">
+      <div class="menu-button">
+        For individuals ▾
+        <div class="dropdown">
+          <div class="dropdown-section">
+            <h4>Buy cryptocurrency</h4>
+            <p><span class="bold">Buy instantly</span><br>Buy cryptocurrency in 3 clicks</p>
+            <p><span class="bold">Exchange</span><br>Buy cryptocurrency with a limit or market order</p>
+            <p><span class="bold">OTC</span><br>Over-the-counter trading of cryptocurrencies for large amounts</p>
+          </div>
+          <div class="dropdown-section">
+            <h4>Asset Transfers</h4>
+            <p><span class="bold">Between users</span><br>Transfers via email and cryptocurrency transfers</p>
+            <p><span class="bold">SWIFT transfers</span><br>Dollar transfers via SWIFT</p>
+            <p><span class="bold">P2P transfers</span><br>Deposit and withdrawal from balance</p>
+          </div>
+          <div class="dropdown-section">
+            <h4>Loans and Deposits</h4>
+            <p><span class="bold">Borrow money</span><br>Borrow money at 15% in USDT or 9%</p>
+            <p><span class="bold">Deposit money</span><br>Up to 8% annual interest in USDT or Russian rubles</p>
+          </div>
+          <div class="dropdown-section">
+            <h4>Investing</h4>
+            <p><span class="bold">Investment products</span><br>Income up to 30% annually</p>
+          </div>
+        </div>
+      </div>
+      <div class="menu-button">For businesses ▾</div>
+    </div>
+
+    <div class="auth-buttons">
+      <button class="login" onclick="location.href='login.html'">Log in</button>
+      <button class="signup" onclick="location.href='signup.html'">Sign Up</button>
+      <span class="lang">EN</span>
+    </div>
+  </header>
+
+ <section class="hero">
+  <div class="hero-text">
+    <div style="width: 100%; max-width: 600px;">
+  <h1 style="white-space: nowrap; font-size: 70px; font-weight: bold;">Practical Finance</h1>
+</div>
+
+    <p>Simple and secure solutions for transfers, storage, and capital growth in Dollars, Dirhams, USDT, USDC, BTC, and other currencies.</p>
+
+      <button class="btn-start" onclick="location.href='signup.html'">
+  <span>→</span> Get started
+</button>
+
+  
+</a>
+
+  </div>
+
+  <!-- Image and counter grouped together -->
+  <div class="hero-right">
+    <img src="background.png" alt="Bitbanker Hero Image" class="hero-img"/>
+    <div class="user-count">
+      <div class="digits" id="user-counter"></div>
+      <p>users trust Bitbanker</p>
+    </div>
+  </div>
+</section>
+ <script>
+  async function fetchUserCount() {
+    try {
+      const response = await fetch('https://api.aws.bitbanker.org/latest/public/user/counter');
+      const data = await response.json();
+      document.getElementById('user-counter').textContent = data.count?.toLocaleString() || 'N/A';
+    } catch (error) {
+      console.error('Error fetching user count:', error);
+      document.getElementById('user-counter').textContent = 'Error';
+    }
+  }
+
+  fetchUserCount(); // Run on page load
+  setInterval(fetchUserCount, 30000); // Refresh every 30 seconds
+</script>
+
+
+  <!-- Existing JS -->
+  <script>
+    const userCount = 53872;
+    const targetCount = userCount + Math.floor(Math.random() * 50 + 20);
+    const counterElement = document.getElementById("counter");
+
+    function updateCounterDisplay(count) {
+      counterElement.innerHTML = "";
+      count.toString().padStart(6, '0').split('').forEach(digit => {
+        const span = document.createElement('span');
+        span.textContent = digit;
+        counterElement.appendChild(span);
+      });
+    }
+
+    let currentCount = userCount;
+    updateCounterDisplay(currentCount);
+
+    const interval = setInterval(() => {
+      currentCount++;
+      updateCounterDisplay(currentCount);
+      if (currentCount >= targetCount) {
+        clearInterval(interval);
+      }
+    }, 100);
+  </script>
+</body>
+</html>
+
+
